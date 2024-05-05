@@ -1,0 +1,43 @@
+#include<iostream>
+#include<vector>
+#include<string>
+using namespace std;
+class node{
+    public:
+    string name;
+    vector<node*>children;
+    node(string name){
+          this->name=name;
+    }
+};
+void printnodes(node*root,int depth=0){
+    if(root==nullptr){
+        return;
+    }
+    for(int i=0;i<depth;++i){
+        cout<<"";}
+        cout<<root->name<<endl;
+    
+    for (int i=0;i<root->children.size();++i){
+        node*child = root->children[i];
+        printnodes(child,depth+1);
+    }
+}
+int main(){
+   
+    node *book=new node("book");
+    node *chapter1=new node("chap1");
+    node *section1_1=new node("sec1.1");
+    node *section1_2=new node("sec1.2");
+    node *chapter2=new node("chap2");
+    node *section2_1=new node("sec2.1");
+
+    book->children.push_back(chapter1);
+    book->children.push_back(chapter2);
+    chapter1->children.push_back(section1_1);
+    chapter1->children.push_back(section1_2);
+    chapter2->children.push_back(section2_1);
+    printnodes(book);
+    
+
+}
